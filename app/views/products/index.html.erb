@@ -5,15 +5,25 @@
             <div class="text-right">
                 <%= link_to "Agregar Producto", new_product_path, class: "btn btn-primary" %>
             </div>
-            <table>
+            <table class="table">
                 <tr>
                     <th>Nombre</th>
                     <th>Precio</th>
+                    <th>Categorias</th>
                 </tr>
                 <% @products.each do |product| %>
                     <tr>
                         <td><%= product.name %></td>
                         <td><%= product.price %></td>
+                        <td>
+                            <% product.categories.each do |category| %>
+                                <% if category == product.categories.last %>
+                                    <%= category.name %>
+                                <% else %>
+                                    <%= category.name + ', ' %>
+                                <% end %>
+                            <% end %>
+                        </td>
                     </tr>
                 <% end %>
             </table>
